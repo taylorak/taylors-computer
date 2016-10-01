@@ -1,5 +1,11 @@
 var titles = ['CG', 'COS', 'DCGAR', 'DCGN', 'DCGNG', 'DCGS', 'G3'];
 
+var numToMonth = {
+  10: 'October',
+  11: 'November',
+  12: 'December'
+}
+
 var superColumns = [
   ['x', 10, 11, 12],
   ['Nato', 0, 0, 0],
@@ -34,104 +40,109 @@ function generalChart(title, cb) {
 }
 
 function parseData(data) {
-    var days;
-    var items = data.items;
+  var days;
+  var items = data.items;
 
-    days = _.orderBy(_.uniq(items.map(function(cur) {
-      return moment(cur.start.dateTime).format("MM");
-    })));
+  days = _.orderBy(_.uniq(items.map(function(cur) {
+    return moment(cur.start.dateTime).format("MM");
+  })));
 
 
-    var events = items.map(function(cur) {
-      var startDate = moment(cur.start.dateTime);
-      var endDate = moment(cur.end.dateTime);
+  var events = items.map(function(cur) {
+    var startDate = moment(cur.start.dateTime);
+    var endDate = moment(cur.end.dateTime);
 
-      var duration = moment.duration(endDate.diff(startDate)).hours();
+    var duration = moment.duration(endDate.diff(startDate)).hours();
 
-      return {
-        day: moment(cur.start.dateTime).format("MM"),
-        eventType: cur.summary,
-        duration: duration
-      }
-    });
-
-    var reducedDates = {
-      nato: {},
-      allies: {},
-      army: {},
-      officials: {},
-      supporters: {},
-      joint: {},
-      staff: {}
+    return {
+      day: moment(cur.start.dateTime).format("MM"),
+      eventType: cur.summary,
+      duration: duration
     }
+  });
 
-    days.forEach(function(day) {
-      reducedDates.nato[day] = 0;
-      reducedDates.allies[day] = 0;
-      reducedDates.army[day] = 0;
-      reducedDates.officials[day] = 0;
-      reducedDates.supporters[day] = 0;
-      reducedDates.joint[day] = 0;
-      reducedDates.staff[day] = 0;
-    })
+  var reducedDates = {
+    nato: {},
+    allies: {},
+    army: {},
+    officials: {},
+    supporters: {},
+    joint: {},
+    staff: {}
+  }
 
-    var finalOutput = events.reduce(function(data, event) {
-      data[event.eventType][event.day] += event.duration;
-      return data;
-    }, reducedDates);
+  days.forEach(function(day) {
+    reducedDates.nato[day] = 0;
+    reducedDates.allies[day] = 0;
+    reducedDates.army[day] = 0;
+    reducedDates.officials[day] = 0;
+    reducedDates.supporters[day] = 0;
+    reducedDates.joint[day] = 0;
+    reducedDates.staff[day] = 0;
+  })
 
-
-    var natoData = [];
-    Object.keys(finalOutput['nato']).forEach(function(output) {
-      natoData.push(finalOutput['nato'][output]);
-    });
-
-
-    var alliesData = [];
-    Object.keys(finalOutput['allies']).forEach(function(output) {
-      alliesData.push(finalOutput['allies'][output]);
-    });
-
-
-    var armyData = [];
-    Object.keys(finalOutput['army']).forEach(function(output) {
-      armyData.push(finalOutput['army'][output]);
-    });
+  var finalOutput = events.reduce(function(data, event) {
+    data[event.eventType][event.day] += event.duration;
+    return data;
+  }, reducedDates);
 
 
-    var officialsData = [];
-    Object.keys(finalOutput['officials']).forEach(function(output) {
-      officialsData.push(finalOutput['officials'][output]);
-    });
+  var natoData = [];
+  Object.keys(finalOutput['nato']).forEach(function(output) {
+    natoData.push(finalOutput['nato'][output]);
+  });
 
 
-    var supportersData = [];
-    Object.keys(finalOutput['supporters']).forEach(function(output) {
-      supportersData.push(finalOutput['supporters'][output]);
-    });
+  var alliesData = [];
+  Object.keys(finalOutput['allies']).forEach(function(output) {
+    alliesData.push(finalOutput['allies'][output]);
+  });
 
 
-    var jointData = [];
-    Object.keys(finalOutput['joint']).forEach(function(output) {
-      jointData.push(finalOutput['joint'][output]);
-    });
+  var armyData = [];
+  Object.keys(finalOutput['army']).forEach(function(output) {
+    armyData.push(finalOutput['army'][output]);
+  });
 
 
-    var staffData = [];
-    Object.keys(finalOutput['staff']).forEach(function(output) {
-      staffData.push(finalOutput['staff'][output]);
-    });
+  var officialsData = [];
+  Object.keys(finalOutput['officials']).forEach(function(output) {
+    officialsData.push(finalOutput['officials'][output]);
+  });
+
+
+  var supportersData = [];
+  Object.keys(finalOutput['supporters']).forEach(function(output) {
+    supportersData.push(finalOutput['supporters'][output]);
+  });
+
+
+  var jointData = [];
+  Object.keys(finalOutput['joint']).forEach(function(output) {
+    jointData.push(finalOutput['joint'][output]);
+  });
+
+
+  var staffData = [];
+  Object.keys(finalOutput['staff']).forEach(function(output) {
+    staffData.push(finalOutput['staff'][output]);
+  });
+
+  days = days.map(function(day) {
+    return numToMonth[day];
+  })
 
 
 
-    days.unshift('x');
-    natoData.unshift('Nato');
-    alliesData.unshift('Allies');
-    armyData.unshift('Army');
-    officialsData.unshift('Officials');
-    supportersData.unshift('Supporters');
-    jointData.unshift('Joint');
-    staffData.unshift('Staff');
+  days.unshift('x');
+  natoData.unshift('Nato');
+  alliesData.unshift('Allies');
+  armyData.unshift('Army');
+  officialsData.unshift('Officials');
+  supportersData.unshift('Supporters');
+  jointData.unshift('Joint');
+  staffData.unshift('Staff');
+
 
   return [
     days,
@@ -162,6 +173,9 @@ function generateGraph(title, columns) {
       }
     },
     axis: {
+      x: {
+        type: 'categorized'
+      },
       y: {
         label: {
           text: 'Hours',
@@ -171,7 +185,9 @@ function generateGraph(title, columns) {
     },
     tooltip: {
       format: {
-        title: function (d) { return d; },
+        title: function (d) {
+          return columns[0][d+1];
+        },
         value: function (value, ratio, id, idx) {
           return value + ' Hours';
         }
