@@ -166,6 +166,7 @@ function generateGraph(title, columns) {
   var is_bar = false;
   var chart = c3.generate({
     bindto: '#' + title,
+    padding: {left:40},
     data: {
       x: 'x',
       columns: columns,
