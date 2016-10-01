@@ -1,6 +1,15 @@
 var titles = ['CG', 'COS', 'DCGAR', 'DCGN', 'DCGNG', 'DCGS', 'G3'];
 
 var numToMonth = {
+  1: 'January',
+  2: 'February',
+  3: 'March',
+  4: 'April',
+  5: 'May',
+  6: 'June',
+  7: 'July',
+  8: 'August',
+  9: 'September',
   10: 'October',
   11: 'November',
   12: 'December'
@@ -128,12 +137,6 @@ function parseData(data) {
     staffData.push(finalOutput['staff'][output]);
   });
 
-  days = days.map(function(day) {
-    return numToMonth[day];
-  })
-
-
-
   days.unshift('x');
   natoData.unshift('Nato');
   alliesData.unshift('Allies');
@@ -157,6 +160,7 @@ function parseData(data) {
 }
 
 function generateGraph(title, columns) {
+  var is_bar = false; 
   var chart = c3.generate({
     bindto: '#' + title,
     data: {
@@ -170,11 +174,31 @@ function generateGraph(title, columns) {
         'Supporters': '#a32d0d',
         'Joint': '#690da3',
         'Staff': '#707070'
+      },
+      onclick: function(d,element){
+        if( is_bar ){
+          is_bar = false;
+          this.load({
+            columns: columns,
+            type: 'bar'
+          });
+        } else {
+          is_bar = true;
+          this.load({
+            columns: columns,
+            type: 'line'
+          });
+        }
       }
     },
     axis: {
       x: {
-        type: 'categorized'
+        type: 'categorized',
+        tick: {
+          format: function(x){
+            return numToMonth[ columns[0][x+1] ];
+          }
+        }
       },
       y: {
         label: {
@@ -185,8 +209,8 @@ function generateGraph(title, columns) {
     },
     tooltip: {
       format: {
-        title: function (d) {
-          return columns[0][d+1];
+        title: function(x){
+          return numToMonth[ columns[0][x+1] ];
         },
         value: function (value, ratio, id, idx) {
           return value + ' Hours';
