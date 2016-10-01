@@ -196,6 +196,14 @@ function generateGraph(title, columns) {
         }
       }
     },
+    point: {
+      r: 2,
+      focus: {
+        expand: {
+          r: 8
+        }
+      }
+    },
     legend: {
       position: 'inset'
     },
