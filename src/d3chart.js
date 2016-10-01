@@ -1,15 +1,15 @@
 var titles = ['CG', 'COS', 'DCGAR', 'DCGN', 'DCGNG', 'DCGS', 'G3'];
 
-var superColumns = {
-  days: [],
-  nato: [],
-  allies: [],
-  army: [],
-  officials: [],
-  supporters: [],
-  joint: [],
-  staff: []
-}
+var superColumns = [
+  ['x', 10, 11, 12],
+  ['Nato', 0, 0, 0],
+  ['Allies', 0, 0, 0],
+  ['Army', 0, 0, 0],
+  ['Officials', 0, 0, 0],
+  ['Supporters', 0, 0, 0],
+  ['Joint', 0, 0, 0],
+  ['Staff', 0, 0, 0]
+]
 
 
 function generalChart(title, cb) {
@@ -17,7 +17,17 @@ function generalChart(title, cb) {
     url: 'json/' + title + '.json'
   }).done(function(data) {
     var parsedData = parseData(data);
-    console.log(parsedData);
+    superColumns[0] = parsedData[0];
+
+    for(var i = 1; i < parsedData[0].length; i++) {
+      superColumns[1][i] += parsedData[1][i];
+      superColumns[2][i] += parsedData[2][i];
+      superColumns[3][i] += parsedData[3][i];
+      superColumns[4][i] += parsedData[4][i];
+      superColumns[5][i] += parsedData[5][i];
+      superColumns[6][i] += parsedData[6][i];
+      superColumns[7][i] += parsedData[7][i];
+    }
     generateGraph(title,parsedData);
     cb();
   });
@@ -175,9 +185,9 @@ generalChart('CG', function() {
     generalChart('DCGAR', function() {
       generalChart('DCGNG', function() {
         generalChart('DCGS', function() {
-          generalChart('G3', function() {
-            generalChart('DCGN', function() {
-
+          generalChart('DCGN', function() {
+            generalChart('G3', function() {
+              generateGraph('ALL', superColumns);
             })
           })
         })
