@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Disrupt Army Hackathon</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/styles.css">
+  </head>
+  <body>
+    <header><h1>Disrupt Army Dashboard</h1></header>
+    <div class="wrapper clearfix">
+      <div class="container clearfix">
+        <div class="single-chart">
+          <h4>Commanding General</h4>
+          <div class="chart" id="CG"></div>
+        </div>
+        <div class="single-chart">
+          <h4>Chief of Staff</h4>
+          <div class="chart" id="COS"></div>
+        </div>
+        <div class="single-chart">
+          <h4>Deputy Commanding General-Army Reserve</h4>
+          <div class="chart" id="DCGAR"></div>
+        </div>
+        <div class="single-chart">
+          <h4>Deputy Commanding General-National Guard</h4>
+          <div class="chart" id="DCGNG"></div>
+        </div>
+        <div class="single-chart">
+          <h4>Deputy Commanding General-National</h4>
+          <div class="chart" id="DCGN"></div>
+        </div>
+        <div class="single-chart">
+          <h4>Deputy Commanding General-South</h4>
+          <div class="chart" id="DCGS"></div>
+        </div>
+        <div class="single-chart">
+          <h4>G3</h4>
+          <div class="chart" id="G3"></div>
+        </div>
+      </div>
+      <div class="container">
+          <h4>BLOB</h4>
+          <div class="chart" id="ALL"></div>
+        </div>
+    </div>
+    <!-- <script src="http://d3js.org/d3.v3.min.js"></script> -->
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.css" rel="stylesheet" /> -->
+    <script src="lib/moment.js"></script>
+    <script src="https://cdn.jsdelivr.net/lodash/4.16.2/lodash.min.js"></script>
+    <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js" type="text/javascript"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.js"></script> -->
+    <script src="src/d3chart.js" type="text/javascript"></script>
+
+  </body>
+</html>
