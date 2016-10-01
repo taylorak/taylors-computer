@@ -178,6 +178,7 @@ function generateGraph(title, columns) {
         'Joint': '#690da3',
         'Staff': '#707070'
       },
+      type: 'spline',
       onclick: function(d,element){
         if( is_bar ){
           is_bar = false;
@@ -189,10 +190,13 @@ function generateGraph(title, columns) {
           is_bar = true;
           this.load({
             columns: columns,
-            type: 'line'
+            type: 'spline'
           });
         }
       }
+    },
+    legend: {
+      position: 'inset'
     },
     axis: {
       x: {
