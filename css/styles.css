@@ -50,7 +50,12 @@ h1{
  width: 47%;
  float: left;
  margin-bottom: 20px;
- /*border: 1px solid #000;*/
+ /*border: 1px solid #f2f2f2;*/
+ border-radius: 10px;
+}
+
+.single-chart:hover{
+  background-color: #f2f2f2;
 }
 
 /*.blue-background{
