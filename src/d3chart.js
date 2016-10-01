@@ -124,6 +124,14 @@ $.getJSON({
           position: 'outer-middle'
         }
       }
+    },
+    tooltip: {
+      format: {
+          title: function (d) { return d; },
+          value: function (value, ratio, id, idx) {
+              return value + ' Hours';
+          }
+      }
     }
   });
 
