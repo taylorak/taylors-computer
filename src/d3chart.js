@@ -159,24 +159,24 @@ function generateGraph(title, columns) {
         'Supporters': '#a32d0d',
         'Joint': '#690da3',
         'Staff': '#707070'
-      },
-      axis: {
-        y: {
-          label: {
-            text: 'Hours',
-            position: 'outer-middle'
-          }
-        }
-      },
-      tooltip: {
-        format: {
-          title: function (d) { return d; },
-          value: function (value, ratio, id, idx) {
-            return value + ' Hours';
-          }
+      }
+    },
+    axis: {
+      y: {
+        label: {
+          text: 'Hours',
+          position: 'outer-middle'
         }
       }
     },
+    tooltip: {
+      format: {
+        title: function (d) { return d; },
+        value: function (value, ratio, id, idx) {
+          return value + ' Hours';
+        }
+      }
+    }
   });
 }
 
