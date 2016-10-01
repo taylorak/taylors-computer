@@ -1,13 +1,13 @@
 
-var days;
 
 $.getJSON({
   url: 'json/CG.json'
 }).done(function(data) {
+  var days;
   var items = data.items;
 
   days = _.orderBy(_.uniq(items.map(function(cur) {
-    return moment(cur.start.dateTime).format("YYYY-MM-DD");
+    return moment(cur.start.dateTime).format("MM");
   })));
 
 
@@ -18,7 +18,7 @@ $.getJSON({
     var duration = moment.duration(endDate.diff(startDate)).hours();
 
     return {
-      day: moment(cur.start.dateTime).format("YYYY-MM-DD"),
+      day: moment(cur.start.dateTime).format("MM"),
       eventType: cur.summary,
       duration: duration
     }
@@ -44,41 +44,10 @@ $.getJSON({
     reducedDates.staff[day] = 0;
   })
 
-  console.log(reducedDates);
   var finalOutput = events.reduce(function(data, event) {
     data[event.eventType][event.day] += event.duration;
     return data;
   }, reducedDates);
-
-  console.log(finalOutput);
-
-  // var nato = events.filter(function(cur) {
-  //   return cur.eventType === 'nato';
-  // });
-
-  // var allies = events.filter(function(cur) {
-  //   return cur.eventType === 'allies';
-  // });
-
-  // var armies = events.filter(function(cur) {
-  //   return cur.eventType === 'armies';
-  // });
-
-  // var officials = events.filter(function(cur) {
-  //   return cur.eventType === 'officials';
-  // });
-
-  // var supporters = events.filter(function(cur) {
-  //   return cur.eventType === 'supporters';
-  // });
-
-  // var joint = events.filter(function(cur) {
-  //   return cur.eventType === 'joint';
-  // });
-
-  // var staff = events.filter(function(cur) {
-  //   return cur.eventType === 'staff';
-  // });
 
 
   var natoData = [];
@@ -137,7 +106,6 @@ $.getJSON({
     bindto: '#chart',
     data: {
       x: 'x',
-      //        xFormat: '%Y%m%d', // 'xFormat' can be used as custom format of 'x'
       columns: [
         days,
         natoData,
@@ -146,44 +114,9 @@ $.getJSON({
         officialsData,
         supportersData,
         jointData,
-        staffData
-      ]
+        staffData,
+      ],
     },
-    axis: {
-      y: {
-        max: 4
-      },
-      x: {
-        type: 'timeseries',
-        tick: {
-          format: '%Y-%m-%d'
-        }
-      }
-    }
   });
 
 });
-// d3.json('json/CG-modified.json', function(error, data) {
-//   if(error) throw error;
-//   var eventTotalTime = {
-//     'nato': 0,
-//     'allies': 0,
-//     'army': 0,
-//     'officials': 0,
-//     'supporters': 0,
-//     'joint': 0,
-//     'staff': 0
-//   }
-
-//   var items = data.items;
-
-//   items.reduce(function(prev, cur) {
-//     var type =cur.summary.split(' ')[0];
-
-//   }, eventTotalTime );
-
-//   items.forEach(function(d) {
-//     console.log(d);
-//   })
-
-// });
