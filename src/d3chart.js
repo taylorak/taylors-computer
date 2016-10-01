@@ -13,7 +13,7 @@ var numToMonth = {
   10: 'October',
   11: 'November',
   12: 'December'
-}
+};
 
 var superColumns = [
   ['x', 0, 0, 0],
@@ -24,7 +24,7 @@ var superColumns = [
   ['Supporters', 0, 0, 0],
   ['Joint', 0, 0, 0],
   ['Staff', 0, 0, 0]
-]
+];
 
 
 function generalChart(title, cb) {
@@ -70,7 +70,7 @@ function parseData(data) {
       day: moment(cur.start.dateTime).format("MM"),
       eventType: cur.summary,
       duration: duration
-    }
+    };
   });
 
   var reducedDates = {
@@ -81,7 +81,7 @@ function parseData(data) {
     supporters: {},
     joint: {},
     staff: {}
-  }
+  };
 
   days.forEach(function(day) {
     reducedDates.nato[day] = 0;
@@ -91,7 +91,7 @@ function parseData(data) {
     reducedDates.supporters[day] = 0;
     reducedDates.joint[day] = 0;
     reducedDates.staff[day] = 0;
-  })
+  });
 
   var finalOutput = events.reduce(function(data, event) {
     data[event.eventType][event.day] += event.duration;
@@ -159,11 +159,11 @@ function parseData(data) {
     supportersData,
     jointData,
     staffData,
-  ]
+  ];
 }
 
 function generateGraph(title, columns) {
-  var is_bar = false; 
+  var is_bar = false;
   var chart = c3.generate({
     bindto: '#' + title,
     data: {
@@ -231,10 +231,10 @@ generalChart('CG', function() {
           generalChart('DCGN', function() {
             generalChart('G3', function() {
               generateGraph('ALL', superColumns);
-            })
-          })
-        })
-      })
-    })
-  })
+            });
+          });
+        });
+      });
+    });
+  });
 });
