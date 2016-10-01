@@ -35,7 +35,7 @@ h1{
   /*border: 1px solid #000;*/
 }
 
-.single-chart h4{
+.container h4{
   text-align: center;
   background-color: #1b2535;
   color: #e0e1e2;
@@ -56,6 +56,11 @@ h1{
 
 .single-chart:hover{
   background-color: #f2f2f2;
+}
+
+.full{
+  display: block;
+  width: 100%;
 }
 
 /*.blue-background{
