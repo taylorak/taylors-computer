@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>Bar Chart</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/styles.css">
   </head>
@@ -12,7 +13,7 @@
     <header><h1>Dashboard</h1></header>
     <div class="wrapper clearfix">
       <div class="legend">
-        <h4>Key</h4>
+        <h4>Legend</h4>
         <ul>
           <li><div class="box blue-background">&nbsp;</div>Nato</li>
           <li><div class="box green-background">&nbsp;</div>Allies</li>
@@ -23,10 +24,34 @@
           <li><div class="box grey-background">&nbsp;</div>Staff</li>
         </ul>
       </div>
-      <div class="container">
+      <div class="container clearfix">
         <div class="single-chart">
-          <h4>CG</h4>
-          <div id="chart"></div>
+          <h4>Commanding General</h4>
+          <div class="chart" id="cg"></div>
+        </div>
+        <div class="single-chart">
+          <h4>Chief of Staff</h4>
+          <div class="chart" id="cs"></div>
+        </div>
+        <div class="single-chart">
+          <h4>Deputy Commanding General-Army Reserve</h4>
+          <div class="chart" id="dc_gar"></div>
+        </div>
+        <div class="single-chart">
+          <h4>Deputy Commanding General-National Guard</h4>
+          <div class="chart" id="dc_gng"></div>
+        </div>
+        <div class="single-chart">
+          <h4>Deputy Commanding General-National</h4>
+          <div class="chart" id="dc_gn"></div>
+        </div>
+        <div class="single-chart">
+          <h4>Deputy Commanding General-South</h4>
+          <div class="chart" id="dc_gs"></div>
+        </div>
+        <div class="single-chart">
+          <h4>G3</h4>
+          <div class="chart" id="dc_g3"></div>
         </div>
       </div>
     </div>

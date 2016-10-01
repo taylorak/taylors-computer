@@ -134,7 +134,7 @@ $.getJSON({
   staffData.unshift('staff');
 
   var chart = c3.generate({
-    bindto: '#chart',
+    bindto: '.chart',
     data: {
       x: 'x',
       //        xFormat: '%Y%m%d', // 'xFormat' can be used as custom format of 'x'
