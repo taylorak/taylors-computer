@@ -14,9 +14,10 @@ var superColumns = {
 
 function generalChart(title, cb) {
   $.getJSON({
-    url: `json/${title}.json`
+    url: 'json/' + title + '.json'
   }).done(function(data) {
     var parsedData = parseData(data);
+    console.log(parsedData);
     generateGraph(title,parsedData);
     cb();
   });
@@ -114,13 +115,13 @@ function parseData(data) {
 
 
     days.unshift('x');
-    natoData.unshift('nato');
-    alliesData.unshift('allies');
-    armyData.unshift('army');
-    officialsData.unshift('officials');
-    supportersData.unshift('supporters');
-    jointData.unshift('joint');
-    staffData.unshift('staff');
+    natoData.unshift('Nato');
+    alliesData.unshift('Allies');
+    armyData.unshift('Army');
+    officialsData.unshift('Officials');
+    supportersData.unshift('Supporters');
+    jointData.unshift('Joint');
+    staffData.unshift('Staff');
 
   return [
     days,
@@ -136,10 +137,35 @@ function parseData(data) {
 
 function generateGraph(title, columns) {
   var chart = c3.generate({
-    bindto: `#${title}`,
+    bindto: '#' + title,
     data: {
       x: 'x',
-      columns: columns
+      columns: columns,
+      colors: {
+        'Nato' : '#2f6cce',
+        'Allies': '#23b23b',
+        'Army': '#037015',
+        'Officials': '#efec1c',
+        'Supporters': '#a32d0d',
+        'Joint': '#690da3',
+        'Staff': '#707070'
+      },
+      axis: {
+        y: {
+          label: {
+            text: 'Hours',
+            position: 'outer-middle'
+          }
+        }
+      },
+      tooltip: {
+        format: {
+          title: function (d) { return d; },
+          value: function (value, ratio, id, idx) {
+            return value + ' Hours';
+          }
+        }
+      }
     },
   });
 }
@@ -150,7 +176,9 @@ generalChart('CG', function() {
       generalChart('DCGNG', function() {
         generalChart('DCGS', function() {
           generalChart('G3', function() {
+            generalChart('DCGN', function() {
 
+            })
           })
         })
       })
