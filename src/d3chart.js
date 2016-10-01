@@ -117,6 +117,14 @@ $.getJSON({
         staffData,
       ],
     },
+    axis: {
+      y: {
+        label: {
+          text: 'Hours',
+          position: 'outer-middle'
+        }
+      }
+    }
   });
 
 });
