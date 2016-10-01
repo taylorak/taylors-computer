@@ -28,47 +28,32 @@ h1{
   width: 100%;
 }
 
-.legend{
-  width: 15%;
-  float: left;
-  padding: 30px;
-}
-
 .container{
   width: 75%;
-  float: left;
   padding: 30px;
-}
-
-.container, .legend{
-  border: 1px solid #000;
-}
-
-.legend ul{
-  margin-top: 15px;
-}
-
-.legend ul li{
-  margin-bottom: 10px;
-}
-
-.box{
-  width: 20px;
-  height: 15px;
-  border: 1px solid #000;
-  display: inline-block;
-  margin-right: 10px;
+  margin: 0 auto;
+  /*border: 1px solid #000;*/
 }
 
 .single-chart h4{
   text-align: center;
+  background-color: #1b2535;
+  color: #e0e1e2;
+  padding: 15px;
+  margin-bottom: 10px;
+  border: 1px solid #1b2535;
+  border-radius: 5px;
 }
 
 .single-chart{
  padding: 15px 10px;
+ width: 47%;
+ float: left;
+ margin-bottom: 20px;
+ /*border: 1px solid #000;*/
 }
 
-.blue-background{
+/*.blue-background{
   background-color:#2f6cce;
 }
 
@@ -94,4 +79,4 @@ h1{
 
 .grey-background{
   background-color:#707070;
-}
+}*/
