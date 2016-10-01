@@ -16,7 +16,7 @@ var numToMonth = {
 }
 
 var superColumns = [
-  ['x', 10, 11, 12],
+  ['x', 0, 0, 0],
   ['Nato', 0, 0, 0],
   ['Allies', 0, 0, 0],
   ['Army', 0, 0, 0],
@@ -33,6 +33,9 @@ function generalChart(title, cb) {
   }).done(function(data) {
     var parsedData = parseData(data);
     superColumns[0] = parsedData[0];
+    superColumns[0][1] = parsedData[0][1];
+    superColumns[0][2] = parsedData[0][2];
+    superColumns[0][3] = parsedData[0][3];
 
     for(var i = 1; i < parsedData[0].length; i++) {
       superColumns[1][i] += parsedData[1][i];
